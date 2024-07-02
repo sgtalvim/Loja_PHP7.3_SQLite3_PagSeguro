@@ -1,0 +1,31 @@
+Direcionando para o PagSeguro...
+
+<!-- 08/06/2024 -->
+<!-- https://pagseguro.uol.com.br/desenvolvedor/carrinho_proprio.jhtml#rmcl -->
+
+<form method="post" action="https://pagseguro.uol.com.br/checkout/checkout.jhtml">
+  <input type="hidden" name="email_cobranca" value="claudiopaiva1@yahoo.com.br">
+  <input type="hidden" name="tipo" value="CP">
+  <input type="hidden" name="moeda" value="BRL">
+
+  <!-- PRODUTOS -->
+  {loop="$products"}
+  <input type="hidden" name="item_id_{$counter+1}" value="{$value.idproduct}">
+  <input type="hidden" name="item_descr_{$counter+1}" value="{$value.desproduct}">
+  <input type="hidden" name="item_quant_{$counter+1}" value="{$value.nrqtd}">
+  <input type="hidden" name="item_valor_{$counter+1}" value="{$value.vlprice*100}">
+  {if="$counter != 0"}
+  <input type="hidden" name="item_frete_{$counter+1}" value="0">
+  {else}
+  <input type="hidden" name="item_frete_1" value="{$order.vlfreight*100}">
+  {/if}
+  <input type="hidden" name="item_peso_{$counter+1}" value="{$value.vlweight*1000}">
+  {/loop}
+  
+  <input type="hidden" name="tipo_frete" value="EN">
+  <input type="image" src="https://p.simg.uol.com.br/out/pagseguro/i/botoes/pagamentos/99x61-pagar-assina.gif" name="submit" alt="Pague com PagBank - é rápido, grátis e seguro!">
+</form>
+
+<script type="text/javascript">
+//document.forms[0].submit();
+</script>
